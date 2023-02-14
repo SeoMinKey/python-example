@@ -1,3 +1,5 @@
+#각종 자료형 테스트
+
 print(7, type(7))           
 print(7.2, type(7.2))
 print(3 + 4j, type(3 + 4j))
