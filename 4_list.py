@@ -5,8 +5,10 @@ print(list1)
 print(list1[0:2])  #시작:끝 인덱스는 0부터 시작
 print(str(list1))
 
-list1.append('!')   #더하기
+list1.append('!')   #더하기(무조건 뒤에 더해짐)
 print(list1)
+
+
 
 del list1[:4]   #빼기
 print(list1)
