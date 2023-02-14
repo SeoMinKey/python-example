@@ -6,9 +6,9 @@ for i in list:
     print(i)
     
 for i in list:
-    print(i, end='') #엔터 안치는 법
+    print(i, end='') #엔터 안치는 법 복습
     
-#10번 반복
+#10번 반복 (0부터 9까지임)
 for i in range (0,10):
     print(i)
     
