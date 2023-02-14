@@ -16,4 +16,4 @@ print('차:', d)
 print('곱:', e)
 print('나머지:', f)
 print('나누기:', g)
-#print('곱:', d)
+
