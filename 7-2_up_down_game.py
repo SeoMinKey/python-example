@@ -6,7 +6,7 @@ start_sign = input("준비가 되었다면 yes를 입력하시오. : ")
 user_sing = "user_sing"
 
 max = 101
-min = 1
+min = 0
 
 if start_sign == "yes":
     while user_sing != "yes":
