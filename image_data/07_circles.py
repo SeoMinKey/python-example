@@ -4,7 +4,7 @@ import numpy as np
 
 # 이미지 파일을 읽어온다.
 path = os.path.abspath(os.path.dirname(__file__))
-file_name = "도형.png"
+file_name = "shapes.png"
 img_file = os.path.join(path, file_name)
 
 img = cv2.imread(img_file)
