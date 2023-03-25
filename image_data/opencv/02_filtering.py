@@ -13,5 +13,3 @@ edges = cv2.Canny(img, 100, 200)
 filter_file = os.path.join(path, 'filter.jpg')
 cv2.imwrite(filter_file,edges)
 
-# filtered_image = cv2.bitwise_and(img, img, mask=edges)
-# cv2.imshow("filtered image", filtered_image)
