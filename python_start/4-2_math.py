@@ -9,6 +9,7 @@ trapezoid = (l + u) * h / 2
 
 print(square)
 print(triangle)
+print(trapezoid)
 
 # 2차 방정식
 a = 7
