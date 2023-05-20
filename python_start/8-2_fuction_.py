@@ -1,10 +1,10 @@
 # 팩토리얼 함수
 def factorial(num):
-    sum = 0
+    fact = 0
     for i in range(1,num+1):
-        sum *= i
+        fact *= i
     
-    return sum
+    return fact
 
 print(f"10! : {factorial(10)}")
 
