@@ -11,7 +11,7 @@ screen = pygame.display.set_mode(screen_size)
 done = True
 clock = pygame.time.Clock()
 
-airplane = pygame.image.load('plane.png')
+airplane = pygame.image.load('python-example/pygame/plane.png')
 airplane_size = (120, 90)
 airplane = pygame.transform.scale(airplane, airplane_size)
 
