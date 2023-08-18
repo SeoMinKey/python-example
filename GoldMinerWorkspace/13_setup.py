@@ -71,23 +71,23 @@ class Gemstone(pygame.sprite.Sprite):
 
 def setup_gemstone():
     small_gold_price, small_gold_speed = 100, 15
-    big_gold_price, big_gold_speed = 300, 8
-    stone_price, stone_speed = 10, 10
-    diamond_price, diamond_speed = 600, 17
-    
+    big_gold_price, big_gold_speed = 600, 8
+    stone_price, stone_speed = 300, 10
+    diamond_price, diamond_speed = 10, 17
+
     big_gold_spot = [(300, 550), (680, 750), (1280, 900), (1580, 650)]
-    small_gold_spot = [(100, 500), (400, 400), (600, 600), (250, 730), (440, 850), (870, 640), (1000, 900), (1280, 550), (1400, 720), (1580, 950), (1700, 480), (1780, 770)]
-    stone_spot = [(180, 900), (440, 700), (600, 430), (860, 800), (1000, 570), (1200, 680), (1420, 500), (1580, 810)]
-    diamond_spot = [(120, 700), (610, 960), (1000, 740), (1500, 970), (1750, 650)]
+    diamond_spot = [(100, 500), (400, 400), (600, 600), (250, 730), (440, 850), (870, 640), (1000, 900), (1280, 550), (1400, 720), (1580, 950), (1700, 480), (1780, 770)]
+    small_gold_spot = [(180, 900), (440, 700), (600, 430), (860, 800), (1000, 570), (1200, 680), (1420, 500), (1580, 810)]
+    stone_spot = [(120, 700), (610, 960), (1000, 740), (1500, 970), (1750, 650)]
 
     # 작은 금
     random.shuffle(small_gold_spot)
-    for i in range(0, 7):
+    for i in range(0, 5):
         gemstone_group.add(Gemstone(gemstone_images[0], small_gold_spot[i], small_gold_price, small_gold_speed)) # 그룹에 추가
     
     # 큰 금
     random.shuffle(big_gold_spot)
-    for i in range(0, 3):
+    for i in range(0, 2):
         gemstone_group.add(Gemstone(gemstone_images[1], big_gold_spot[i], big_gold_price, big_gold_speed))
 
     # 돌
@@ -97,7 +97,7 @@ def setup_gemstone():
 
     # 다이아몬드
     random.shuffle(diamond_spot)
-    for i in range(0, 2):
+    for i in range(0, 9):
         gemstone_group.add(Gemstone(gemstone_images[3], diamond_spot[i], diamond_price, diamond_speed))
 
 def update_score(score):
@@ -105,21 +105,21 @@ def update_score(score):
     curr_score += score
 
 def display_score():
-    game_font = pygame.font.SysFont("arialrounded", 60)
-    txt_curr_score = game_font.render(f"Curr Score : {curr_score:,}", True, BLACK)
+    game_font = pygame.font.Font(text_font, 70)
+    txt_curr_score = game_font.render(f"현재 점수 : {curr_score:,}", True, BLACK)
     screen.blit(txt_curr_score, (50, 50))
 
-    game_font = pygame.font.SysFont("arialrounded", 60)
-    txt_goal_score = game_font.render(f"Goal Score : {goal_score:,}", True, BLACK)
+    game_font = pygame.font.Font(text_font, 70)
+    txt_goal_score = game_font.render(f"목표 점수 : {goal_score:,}", True, BLACK)
     screen.blit(txt_goal_score, (50, 130))
 
 def display_time(time):
-    game_font = pygame.font.SysFont("arialrounded", 60)
-    txt_timer = game_font.render(f"Time : {time}", True, BLACK)
-    screen.blit(txt_timer, (screen_width - 300, 50))
+    game_font = pygame.font.Font(text_font, 70)
+    txt_timer = game_font.render(f"시간 : {time}", True, BLACK)
+    screen.blit(txt_timer, (screen_width - 370, 50))
 
 def display_game_text(text):
-    game_font = pygame.font.SysFont("arialrounded", 90) # 큰 폰트
+    game_font = pygame.font.Font(text_font, 130) # 큰 폰트
     txt_game_over = game_font.render(text, True, WHITE)
     rect_game_over = txt_game_over.get_rect(center=(int(screen_width / 2), int(screen_height / 2))) # 화면 중앙에 표시
     screen.blit(txt_game_over, rect_game_over)
@@ -140,10 +140,10 @@ screen_height = 1080
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Gold Miner")
 clock = pygame.time.Clock()
-game_font = pygame.font.SysFont("arialrounded", 30)
+game_font = pygame.font.Font()
 
 # 점수 관련 변수
-goal_score = 1500 # 목표 점수
+goal_score = 2500 # 목표 점수
 curr_score = 0 # 현재 점수
 
 # 게임 오버 관련 변수
@@ -173,6 +173,7 @@ WHITE = (255, 255, 255)
 # 배경 이미지 불러오기
 current_path = os.path.dirname(__file__) # 현재 파일의 위치 반환
 background = pygame.image.load(os.path.join(current_path, "background.png"))
+text_font = os.path.join(current_path, "DungGeunMo.ttf")
 
 # 4개 보석 이미지 불러오기 (작은 금, 큰 금, 돌, 다이아몬드)
 gemstone_images = [
@@ -208,7 +209,9 @@ while game:
         pygame.display.update()
 
     game_set()
-    print('----SET----')
+
+    if not game:
+        break
 
     running = True
     while running:
@@ -228,7 +231,6 @@ while game:
             to_x = -return_speed
 
         if claw.offset.x < default_offset_x_claw: # 원위치에 오면
-            print(1)
             to_x = 0
             claw.set_init_state() # 처음 상태로 되돌림
 
@@ -242,14 +244,12 @@ while game:
                 # if claw.rect.colliderect(gemstone.rect): # 직사각형 기준으로 충돌 처리
                 if pygame.sprite.collide_mask(claw, gemstone): # 투명 영역은 제외하고 실제 이미지 영역에 대해 충돌 처리
                     caught_gemstone = gemstone # 잡힌 보석
-                    print(2)
                     to_x = -gemstone.speed # 잡힌 보석의 속도에 - 한 값을 이동 속도로 설정
                     print(claw.offset.x,  default_offset_x_claw)
                     break
 
         if caught_gemstone:
             caught_gemstone.set_position(claw.rect.center, claw.angle)
-            print(3)
 
         screen.blit(background, (0, 0))
 
