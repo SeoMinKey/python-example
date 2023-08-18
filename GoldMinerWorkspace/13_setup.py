@@ -98,7 +98,7 @@ def setup_gemstone():
     # 다이아몬드
     random.shuffle(diamond_spot)
     for i in range(0, 9):
-        gemstone_group.add(Gemstone(pygame.transform.rotozoom(gemstone_images[3], random.randrange(-50, 50), 1), diamond_spot[i], diamond_price, diamond_speed))
+        gemstone_group.add(Gemstone(pygame.transform.rotozoom(gemstone_images[3], random.randrange(-70, -20), 1), diamond_spot[i], diamond_price, diamond_speed))
 
 def update_score(score):
     global curr_score
