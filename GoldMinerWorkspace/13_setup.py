@@ -70,35 +70,35 @@ class Gemstone(pygame.sprite.Sprite):
         self.rect.center = (position[0] + to_x, position[1] + to_y)
 
 def setup_gemstone():
-    small_gold_price, small_gold_speed = 100, 15
+    small_gold_price, small_gold_speed = 300, 10
     big_gold_price, big_gold_speed = 600, 8
-    stone_price, stone_speed = 300, 10
-    diamond_price, diamond_speed = 10, 17
+    stone_price, stone_speed = 100, 15
+    diamond_price, diamond_speed = -10, 17
 
     big_gold_spot = [(300, 550), (680, 750), (1280, 900), (1580, 650)]
     diamond_spot = [(100, 500), (400, 400), (600, 600), (250, 730), (440, 850), (870, 640), (1000, 900), (1280, 550), (1400, 720), (1580, 950), (1700, 480), (1780, 770)]
-    small_gold_spot = [(180, 900), (440, 700), (600, 430), (860, 800), (1000, 570), (1200, 680), (1420, 500), (1580, 810)]
-    stone_spot = [(120, 700), (610, 960), (1000, 740), (1500, 970), (1750, 650)]
+    stone_spot = [(180, 900), (440, 700), (600, 430), (860, 800), (1000, 570), (1200, 680), (1420, 500), (1580, 810)]
+    small_gold_spot = [(120, 700), (610, 960), (1000, 740), (1500, 970), (1750, 650)]
 
     # 작은 금
     random.shuffle(small_gold_spot)
-    for i in range(0, 5):
-        gemstone_group.add(Gemstone(gemstone_images[0], small_gold_spot[i], small_gold_price, small_gold_speed)) # 그룹에 추가
+    for i in range(0, 4):
+        gemstone_group.add(Gemstone(pygame.transform.rotozoom(gemstone_images[0], random.randrange(-80, 80), 1), small_gold_spot[i], small_gold_price, small_gold_speed)) # 그룹에 추가
     
     # 큰 금
     random.shuffle(big_gold_spot)
     for i in range(0, 2):
-        gemstone_group.add(Gemstone(gemstone_images[1], big_gold_spot[i], big_gold_price, big_gold_speed))
+        gemstone_group.add(Gemstone(pygame.transform.rotozoom(gemstone_images[1], random.randrange(-20, 20), 1), big_gold_spot[i], big_gold_price, big_gold_speed))
 
     # 돌
     random.shuffle(stone_spot)
-    for i in range(0, 4):
-        gemstone_group.add(Gemstone(gemstone_images[2], stone_spot[i], stone_price, stone_speed))
+    for i in range(0, 5):
+        gemstone_group.add(Gemstone(pygame.transform.rotozoom(gemstone_images[2], random.randrange(-90, 90), 1), stone_spot[i], stone_price, stone_speed))
 
     # 다이아몬드
     random.shuffle(diamond_spot)
     for i in range(0, 9):
-        gemstone_group.add(Gemstone(gemstone_images[3], diamond_spot[i], diamond_price, diamond_speed))
+        gemstone_group.add(Gemstone(pygame.transform.rotozoom(gemstone_images[3], random.randrange(-50, 50), 1), diamond_spot[i], diamond_price, diamond_speed))
 
 def update_score(score):
     global curr_score
@@ -118,10 +118,10 @@ def display_time(time):
     txt_timer = game_font.render(f"시간 : {time}", True, BLACK)
     screen.blit(txt_timer, (screen_width - 370, 50))
 
-def display_game_text(text):
+def display_game_text(text, line):
     game_font = pygame.font.Font(text_font, 130) # 큰 폰트
     txt_game_over = game_font.render(text, True, WHITE)
-    rect_game_over = txt_game_over.get_rect(center=(int(screen_width / 2), int(screen_height / 2))) # 화면 중앙에 표시
+    rect_game_over = txt_game_over.get_rect(center=(int(screen_width / 2), int(screen_height / 2) + line)) # 화면 중앙에 표시
     screen.blit(txt_game_over, rect_game_over)
 
 def game_set():
@@ -195,7 +195,8 @@ while game:
     start = True
     while start:
         screen.blit(background, (0, 0))
-        display_game_text('start game')
+        display_game_text('\바다를 지켜라/', -100)
+        display_game_text('\청소년 지구방위대/', 100)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -273,7 +274,7 @@ while game:
             else:
                 game_result = "Game Over"
             # 게임 종료 메시지 표시
-            display_game_text(game_result)
+            display_game_text(game_result, 0)
             pygame.display.update()
             pygame.time.delay(2000) # 2초 정도 대기 후 종료
         
