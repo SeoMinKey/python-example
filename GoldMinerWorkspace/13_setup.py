@@ -45,8 +45,8 @@ class Claw(pygame.sprite.Sprite):
         self.direction = direction
 
     def draw(self, screen):
-        screen.blit(self.image, self.rect)
         pygame.draw.line(screen, BLACK, self.position, self.rect.center, 5) # 직선 그리기
+        screen.blit(self.image, self.rect)
 
     def set_init_state(self):
         self.offset.x = default_offset_x_claw
