@@ -195,8 +195,7 @@ while game:
     start = True
     while start:
         screen.blit(background, (0, 0))
-        display_game_text('\바다를 지켜라/', -100)
-        display_game_text('\청소년 지구방위대/', 100)
+        display_game_text('\바다를 지켜라/', 0)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
