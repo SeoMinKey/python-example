@@ -16,6 +16,7 @@ class car:
         return self.gas_liter
 
 a = car("aaa", 3, 18)
+print(a.name)
 a.driving()
 a.driving()
 a.refueling(13)
