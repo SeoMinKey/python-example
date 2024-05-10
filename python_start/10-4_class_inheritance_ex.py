@@ -76,11 +76,24 @@ class ClassRoom:
         for student in self.students.keys():
             print(f'{student} -> {self.students[student]}')
 
+    # 추가과제
+    def average(self, subject):
+        totalScore = 0
+        for student in self.students.values():
+            totalScore += student[subject]
+        avg = totalScore / len(self.students)
+        return avg
+
+    def classAve(self):
+        korAve = ClassRoom.average(self, "kor")
+        engAvg = ClassRoom.average(self, "eng")
+        mathAve = ClassRoom.average(self, "math")
+        print(f'korAve: {korAve}, engAvg: {engAvg}, mathAve: {mathAve}')
 
 
 
 a = Student('a',1,1,1,1)
-b = Student('b',2,1,1,1)
+b = Student('b',2,4,1,1)
 c = Student('c',3,1,1,1)
 d = Student('d',4,1,1,1)
 e = Student('e',5,1,1,1)
@@ -95,4 +108,5 @@ a_class.print()
 a_class.delStudent(a)
 a_class.delStudent(e)
 
-a_class.print()
+a_class.classAve()
+
