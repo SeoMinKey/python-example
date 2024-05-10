@@ -40,12 +40,12 @@ class Score:
 
 class Student(Person, Score):
     def __init__(self, name, age, kor, eng, math):
-        Person.__init__(name, age)
-        Score.__init__(kor, eng, math)
+        Person.__init__(self, name, age)
+        Score.__init__(self, kor, eng, math)
 
     def print(self):
-        Person.print()
-        Score.print()
+        Person.print(self)
+        Score.print(self)
 
 class ClassRoom:
     def __init__(self, count):
