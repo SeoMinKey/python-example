@@ -12,8 +12,9 @@
 # 메서드: print()
 
 # ClassRoom 클래스
-# 속성: count
-# 메서드: print(), updateStudent(), delStudent()
+# 속성: count, students(딕셔너리형{이름: {kor: 점수, eng: 점수, math: 점수}})
+# 메서드: print(), updateStudent(), delStudent() 
+
 
 class Person:
     def __init__(self, name, age):
