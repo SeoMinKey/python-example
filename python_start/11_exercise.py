@@ -6,6 +6,10 @@
 # 평균값을 구하는 
 # 클래스를 함수 없이 구현한 코드 작성
 
+# CustomList 클래스를 상속받아 
+# 모든 홀수값 더하기, 
+# 모든 짝수값 더하기 메소드를 추가
+
 import random
 
 class CustomList:
@@ -47,6 +51,21 @@ class CustomList:
     def display_list(self):
         print(self.list)
 
+class AdvancedCustomList(CustomList):
+    def sum_odd(self):
+        total = 0
+        for num in self.list:
+            if num % 2 != 0:
+                total += num
+        return total
+    
+    def sum_even(self):
+        total = 0
+        for num in self.list:
+            if num % 2 == 0:
+                total += num
+        return total
+
 # 사용 예시
 custom_list = CustomList()
 print("랜덤 리스트:")
@@ -63,3 +82,6 @@ custom_list.display_list()
 print("최댓값:", custom_list.find_max())
 print("최소값:", custom_list.find_min())
 print("평균값:", custom_list.calculate_average())
+
+print("홀수값 합:", advanced_list.sum_odd())
+print("짝수값 합:", advanced_list.sum_even())
