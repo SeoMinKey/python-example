@@ -12,7 +12,7 @@
 # 메서드: print()
 
 # ClassRoom 클래스
-# 속성: count, students(딕셔너리형{이름: {kor: 점수, eng: 점수, math: 점수}})
+# 속성: count, students(딕셔너리형{이름: {'kor': 점수, 'eng': 점수, 'math': 점수}})
 # 메서드: print(), updateStudent(), delStudent() 
 
 
@@ -104,9 +104,10 @@ a_class.updateStudent(b)
 a_class.updateStudent(c)
 a_class.updateStudent(d)
 a_class.updateStudent(e)
-a_class.print()
+print(a_class.students)
 a_class.delStudent(a)
 a_class.delStudent(e)
+print(a_class.students)
 
 a_class.classAve()
 
